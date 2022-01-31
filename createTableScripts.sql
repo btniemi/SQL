@@ -8,7 +8,7 @@ CREATE TABLE movies(
 	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	title TEXT NOT NULL,
 	releaseYear YEAR,
-	rating int NOT NULL,
+	age_rating varchar (1) NOT NULL,
 )
 
 CREATE TABLE watched(
