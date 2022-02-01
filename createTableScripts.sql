@@ -1,18 +1,18 @@
 CREATE TABLE peoples(
-	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int NOT NULL AUTOINCREMENT PRIMARY KEY,
 	name varchar(255) NOT NULL,
 	birthdate DATE,
 );
 
 CREATE TABLE movies(
-	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int NOT NULL AUTOINCREMENT PRIMARY KEY,
 	title TEXT NOT NULL,
 	releaseYear YEAR,
 	age_rating varchar (1) NOT NULL,
-)
+);
 
 CREATE TABLE watched(
-	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int NOT NULL AUTOINCREMENT PRIMARY KEY,
 	people_id int,
 	movie_id int,
 	stars int NOT NULL,
@@ -21,6 +21,6 @@ CREATE TABLE watched(
 		REFRENCES peoples (id),
 	FOREIGN KEY (movie_id)
 		REFRENCES movies(id),
-)
+);
 
 /* start with putting this into the shell and getting them into DBeaver and go from there */
