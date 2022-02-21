@@ -1,0 +1,38 @@
+/* query to provide all comments on a specific bug */
+SELECT * FROM comments WHERE bug_id = (any bug id you want to see that has comments about it)
+
+/* query to pull a comment thread out from any point */
+SELECT * FROM comments
+	JOIN replies ON comments.id = replies.descendant
+WHERE replies.ancestor = (any comment id you want)
+
+SELECT * FROM comments
+	JOIN replies on comments.id = replies.ancestor
+WHERE replies.descendant = (any comment id you want)
+
+
+/* query to insert  a new comment into the appropriate thread */
+INSERT INTO replies (ancestor, descendant)
+	SELECT replies.ancestor, 5 /*comment id you want to insert*/
+FROM replies
+	WHERE replies.descendant = 3 /*the comment id you want to reply to*/
+UNION ALL
+SELECT 5,5;
+
+Note: i wish i understood this syntax a bit more I am kinda confused on what is going on in this query at the end and why you select 5,5 but I think this is how you could insert from use of notes in class discussion
+
+
+/* query to delete a comment from a thread */
+DELETE FROM replies WHERE ancestor = 5
+
+DELETE FROM replies WHERE descendant = 15
+
+DELETE FROM replies WHERE descendant IN
+	(SELECT descendant FROM replies WHERE ancestor = 2);
+
+
+WHAT HAPPENS TO THE COMMENTS BELOW A DELETED COMMENT?
+If you have a cascade delete on all comments below the comment you want to delete would also delete as if they did not they would be orphaned. If a comment is orphaned that means that it has no parent comment to connect itself to being that it was a reply to a comment.
+
+If you did not have cascade on delete you would need to handle the relocation of all the child comments below the one deleted. You would need to update the comment ancestors to connect them to a new parent or make them their own ancestor if you wanted to not get rid of them. You would want to do something like this if you cared about keeping your organizational chart intact such as relocation of a person in a department that is no longer available to work for at a place of work or maybe is was a client relation to a hairdresser worker and that hairdresser either has to many clients or is not longer working there and they need to relocate those clients to a new hairdresser.
+
