@@ -125,12 +125,3 @@
 # if x in dict:
 #     print('yes ' + x + ' is present in dictionary')
 
-import pytest
-
-def add(num1, num2):
-    res = num1 + num2
-    return res
-
-
-def test_PracticeForInterview():
-    assert add(2, 2) == 4
