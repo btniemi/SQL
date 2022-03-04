@@ -55,25 +55,25 @@
 #WHATS NEXT
 from operator import index
 
-nums = [3,3]
-target = 6
-
-def twoSum(list, target):
-    res = []
-    first = 0
-    n = len(nums)
-
-    while first < n:
-        second = first + 1
-        while second < n:
-            sum = nums[first] + nums[second]
-            if sum == target:
-                res.append(first)
-                res.append(second)
-            second += 1
-        first += 1
-
-    return res
+# nums = [3,3]
+# target = 6
+#
+# def twoSum(list, target):
+#     res = []
+#     first = 0
+#     n = len(nums)
+#
+#     while first < n:
+#         second = first + 1
+#         while second < n:
+#             sum = nums[first] + nums[second]
+#             if sum == target:
+#                 res.append(first)
+#                 res.append(second)
+#             second += 1
+#         first += 1
+#
+#     return res
 
     # res = []
     # n = len(nums)
@@ -91,4 +91,22 @@ def twoSum(list, target):
     #
     # return res
 
-print(twoSum(nums, target))
+#print(twoSum(nums, target))
+
+dict = {'key1' : "hello", 'key2': "goodbye"}
+for i in dict:
+    print(dict[i])
+
+nums = [3,2,4]
+num_sum = 6
+
+
+def twoSum(list_nums, target):
+    val_to_index = {}
+    for i in range(len(list_nums)):
+        if target - list_nums[i] in val_to_index: #looking at key which is math part
+            return [val_to_index[target-list_nums[i]],i]
+        val_to_index[list_nums[i]] = i #saving the key as the value in list and index as value of that list because want that index value
+
+x = twoSum(nums,num_sum)
+print(x)
