@@ -1,4 +1,4 @@
-#reversing strings in different ways
+# reversing strings in different ways
 # string = input('please type a string...')
 #
 # string_to_split = string
@@ -34,7 +34,7 @@
 # print(reverse_sting1(string_to_split), 'reversed string')
 # print(list(string_to_split), 'this is just the list of the initial string casted')
 
-#count number of bits for each number in binary
+# count number of bits for each number in binary
 
 # def countBits(n):
 #     res = []
@@ -52,8 +52,9 @@
 # print(y)
 # print(count)
 
-#WHATS NEXT
-from operator import index
+# WHATS NEXT
+#from operator import index
+
 
 # nums = [3,3]
 # target = 6
@@ -75,38 +76,61 @@ from operator import index
 #
 #     return res
 
-    # res = []
-    # n = len(nums)
-    # i = 0
-    #
-    # while i < n:
-    #     j = i + 1
-    #     while j < n:
-    #         sum = nums[i] + nums[j]
-    #         if sum == target:
-    #             res.append(i)
-    #             res.append(j)
-    #         j += 1
-    #     i += 1
-    #
-    # return res
+# res = []
+# n = len(nums)
+# i = 0
+#
+# while i < n:
+#     j = i + 1
+#     while j < n:
+#         sum = nums[i] + nums[j]
+#         if sum == target:
+#             res.append(i)
+#             res.append(j)
+#         j += 1
+#     i += 1
+#
+# return res
 
-#print(twoSum(nums, target))
+# print(twoSum(nums, target))
 
-dict = {'key1' : "hello", 'key2': "goodbye"}
-for i in dict:
-    print(dict[i])
+# dict = {'key1' : "hello", 'key2': "goodbye"}
+# for i in dict:
+#     print(dict[i])
+#
+# nums = [3,2,4]
+# num_sum = 6
+#
+#
+# def twoSum(list_nums, target):
+#     val_to_index = {}
+#     for i in range(len(list_nums)):
+#         if target - list_nums[i] in val_to_index: #looking at key which is math part
+#             return [val_to_index[target-list_nums[i]],i]
+#         val_to_index[list_nums[i]] = i #saving the key as the value in list and index as value of that list because want that index value
+#
+# x = twoSum(nums,num_sum)
+# print(x)
 
-nums = [3,2,4]
-num_sum = 6
+# dict = {}
+#
+# dict['key1'] = 2
+#
+# print(dict)
+# for key in dict:
+#     print(key + ' is the key for the dictionary')
+#     print(str(dict[key]) + ' is the value of this dict')
+#
+# x = 'key1'
+# if x in dict:
+#     print('yes ' + x + ' is present in dictionary')
+
+import pytest
+
+def add(num1, num2):
+    res = num1 + num2
+    return res
 
 
-def twoSum(list_nums, target):
-    val_to_index = {}
-    for i in range(len(list_nums)):
-        if target - list_nums[i] in val_to_index: #looking at key which is math part
-            return [val_to_index[target-list_nums[i]],i]
-        val_to_index[list_nums[i]] = i #saving the key as the value in list and index as value of that list because want that index value
-
-x = twoSum(nums,num_sum)
-print(x)
+def test_PracticeForInterview():
+    assert add(2, 2) == 4
