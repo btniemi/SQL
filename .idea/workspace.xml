@@ -24,7 +24,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PracticeGitForMe" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Python.dropGenreColumn">
@@ -159,10 +159,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="412" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1646414495475" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1646412346545">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="651" y="170" key="FileChooserDialogImpl" timestamp="1646931073568">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1646412346545" />
+    <state x="651" y="170" key="FileChooserDialogImpl/1920.0.1366.728/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1646931073568" />
     <state width="1345" height="176" key="GridCell.Tab.0.bottom" timestamp="1646602982460">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
