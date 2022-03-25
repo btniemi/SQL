@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('watched', function (Blueprint $table) {
-            $table->integer('peopleId')->references('id')->on('people');
-            $table->integer('movieId')->references('id')->on('movies');
+            $table->bigInteger('peopleId')->references('id')->on('people');
+            $table->bigInteger('movieId')->references('id')->on('movies');
             $table->integer('stars');
             $table->text('comments');
             $table->timestamps();

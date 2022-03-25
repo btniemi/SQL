@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('watched', function (Blueprint $table) {
-            $table->integer('peopleId')->references('id')->on('people');
-            $table->integer('movieId')->references('id')->on('movies');
-            $table->integer('stars');
-            $table->text('comments');
-            $table->timestamps();
+        Schema::create('failed_jobs', function (Blueprint $table) {
+            $table->id();
+            $table->string('uuid')->unique();
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watched');
+        Schema::dropIfExists('failed_jobs');
     }
 };
