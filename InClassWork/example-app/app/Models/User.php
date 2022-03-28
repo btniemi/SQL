@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $guarded = ['id']; #guarded is the inverse of fillable
+
     /**
      * The attributes that should be hidden for serialization.
      *
