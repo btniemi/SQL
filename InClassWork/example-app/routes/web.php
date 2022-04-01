@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    #\App\Models\User::orderby('name')->all();
+    \App\Models\User::wherenotNull('email_verified_at')->orderby('name')->get();
+
+    return view('welcome', ['users' => $users]);
 });
+
+Route::get('/test', [\App\Http\Controllers\UserController::class, 'index']);
