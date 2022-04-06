@@ -18,7 +18,7 @@ class MoviesFactory extends Factory
     {
         return [
             'title'=>$this->faker->word(),
-            'release year'=>$this->faker->year(),
+            'release_year'=>$this->faker->year(),
             'rating'=> $this->faker->randomElement(['G','PG','PG-13','R']),
         ];
     }

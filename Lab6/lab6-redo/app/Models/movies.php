@@ -13,7 +13,7 @@ class movies extends Model
 
     protected $fillable = [
         'title',
-        'release year',
+        'release_year',
         'rating',
     ];
 }

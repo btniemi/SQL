@@ -11,6 +11,8 @@ class watched extends Model
 
     protected $guarded = ['peopleId', 'movieId',];
 
+    protected $table = 'watched';
+
     protected $fillable = [
         'stars',
         'comments',
