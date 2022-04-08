@@ -17,4 +17,15 @@ class watched extends Model
         'stars',
         'comments',
     ];
+
+//this creates the relationship for the watched to the other tables needed
+    public function getPerson()
+    {
+        return $this->belongsTo(people::class, 'peopleId', 'id');
+    }
+
+    public function getMovie(){
+        return $this->belongsTo(movies::class, 'movieId', 'id');
+    }
+
 }

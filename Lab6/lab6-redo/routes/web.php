@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/data', function(){
+    $people = \App\Models\people::all();
+    $movies = \App\Models\movies::all();
+    $watched = \App\Models\watched::all();
+    return view('data', ['people'=> $people, 'movies'=>$movies, 'watched'=>$watched]);
+});
