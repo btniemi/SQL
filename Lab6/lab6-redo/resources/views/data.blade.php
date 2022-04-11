@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <Title>People,Movies,Watched Tables</Title>
+        <Title>View of People,Movies,Watched Tables</Title>
     </head>
 
     <body>
