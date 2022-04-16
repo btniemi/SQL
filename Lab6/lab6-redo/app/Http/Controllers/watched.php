@@ -13,7 +13,9 @@ class watched extends Controller
      */
     public function index()
     {
-        //
+        $watched = \App\Models\watched::all();
+
+        return view('watched.index', ['watched' => $watched]);
     }
 
     /**

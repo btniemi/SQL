@@ -13,7 +13,9 @@ class people extends Controller
      */
     public function index()
     {
-        //
+        $people = \App\Models\people::all();
+
+        return view('people.index', ['people' => $people]);
     }
 
     /**
