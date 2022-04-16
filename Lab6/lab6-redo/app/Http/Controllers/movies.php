@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\movies;
 
 class movies extends Controller
 {
@@ -25,7 +26,7 @@ class movies extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -36,7 +37,17 @@ class movies extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'release_year'=> 'required|year',
+            'rating'=>'required'
+        ]);
+
+        movies::create([
+            'title' => $validated['title'],
+            'release_year'=> $validated['release_year'],
+            'rating'=>$validated['rating']
+        ]);
     }
 
     /**
@@ -45,9 +56,9 @@ class movies extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movies $movies)
     {
-        //
+        dd($movies);
     }
 
     /**
@@ -56,9 +67,9 @@ class movies extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movies $movies)
     {
-        //
+        return view('movies.edit', ['movies'=>$movies]);
     }
 
     /**
@@ -68,9 +79,19 @@ class movies extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movies $movies)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'release_year'=> 'required|year',
+            'rating'=>'required'
+        ]);
+
+        $movies->title = $validated['title'];
+        $movies->birthdate = $validated['release_year'];
+        $movies->rating = $validated['rating'];
+
+        $movies->save();
     }
 
     /**
@@ -79,8 +100,10 @@ class movies extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movies $movies)
     {
-        //
+        $movies->delete();
+
+        return redirect(url(route('movies.index')));
     }
 }

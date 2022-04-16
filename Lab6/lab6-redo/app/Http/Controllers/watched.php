@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\watched;
 
 class watched extends Controller
 {
@@ -25,7 +26,7 @@ class watched extends Controller
      */
     public function create()
     {
-        //
+        return view('watched.index');
     }
 
     /**
@@ -36,7 +37,9 @@ class watched extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+
+        ]);
     }
 
     /**
