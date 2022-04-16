@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\watched;
+use App\Http\Controllers\Controller;
+use App\Models\people;
 
-class watched extends Controller
+class People extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class watched extends Controller
      */
     public function index()
     {
-        $watched = \App\Models\watched::all();
+        $people = \App\Models\people::all();
 
-        return view('watched.index', ['watched' => $watched]);
+        return view('people.index', ['people' => $people]);
     }
 
     /**
@@ -26,7 +27,7 @@ class watched extends Controller
      */
     public function create()
     {
-        return view('watched.index');
+        return view('people.create');
     }
 
     /**
@@ -38,7 +39,13 @@ class watched extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'name' => 'required|max:255',
+            'birthdate' => 'required|date',
+        ]);
 
+        people::create([
+            'name' => $validated['name'],
+            'birthdate' => $validated['birthdate'],
         ]);
     }
 
@@ -48,9 +55,9 @@ class watched extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(People $people)
     {
-        //
+        dd($people);
     }
 
     /**
@@ -59,9 +66,9 @@ class watched extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(People $people)
     {
-        //
+        return view('people.edit', ['people' => $people]);
     }
 
     /**
@@ -71,9 +78,18 @@ class watched extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, People $people)
     {
-        //
+        $validated = $request->validate([
+            'name'=> 'required|max:255',
+            'birthdate'=> 'required|date',
+        ]);
+
+        $people->name = $validated['name'];
+        $people->birthdate = $validated['birthdate'];
+
+        $people->save();
+
     }
 
     /**
@@ -82,8 +98,10 @@ class watched extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(People $people)
     {
-        //
+        $people->delete();
+
+        return redirect(url(route('people.index')));
     }
 }
