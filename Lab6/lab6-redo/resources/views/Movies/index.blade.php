@@ -2,7 +2,7 @@
 
 <p>There are: {{ $movies->count() }} {{ Str::plural('movies', $movies->count()) }}</p>
 
-<a href="{{ route('people.create') }}">Add a New Person</a>
+<a href="{{ route('movies.create') }}">Add a New Movie</a>
 
 @foreach($movies as $movie)
     <p>{{$movie -> title}} , {{$movie -> release_year}} , {{$movie -> rating}}</p>

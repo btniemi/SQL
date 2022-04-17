@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\watched;
+use Illuminate\Http\Request;
 
-class Watched extends Controller
+class WatchedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +26,7 @@ class Watched extends Controller
      */
     public function create()
     {
-        return view('watched.index');
+        return view('watched.create');
     }
 
     /**
@@ -38,18 +37,16 @@ class Watched extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-
-        ]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\watched  $watched
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(watched $watched)
     {
         //
     }
@@ -57,10 +54,10 @@ class Watched extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\watched  $watched
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(watched $watched)
     {
         //
     }
@@ -69,10 +66,10 @@ class Watched extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\watched  $watched
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, watched $watched)
     {
         //
     }
@@ -80,10 +77,10 @@ class Watched extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\watched  $watched
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(watched $watched)
     {
         //
     }

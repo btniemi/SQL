@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\people;
+use Illuminate\Http\Request;
 
-class People extends Controller
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -52,10 +51,10 @@ class People extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\people  $people
      * @return \Illuminate\Http\Response
      */
-    public function show(People $people)
+    public function show(people $people)
     {
         dd($people);
     }
@@ -63,10 +62,10 @@ class People extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\people  $people
      * @return \Illuminate\Http\Response
      */
-    public function edit(People $people)
+    public function edit(people $people)
     {
         return view('people.edit', ['people' => $people]);
     }
@@ -75,10 +74,10 @@ class People extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\people  $people
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, People $people)
+    public function update(Request $request, people $people)
     {
         $validated = $request->validate([
             'name'=> 'required|max:255',
@@ -89,16 +88,15 @@ class People extends Controller
         $people->birthdate = $validated['birthdate'];
 
         $people->save();
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\people  $people
      * @return \Illuminate\Http\Response
      */
-    public function destroy(People $people)
+    public function destroy(people $people)
     {
         $people->delete();
 

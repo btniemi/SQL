@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\movies;
+use Illuminate\Http\Request;
 
-class Movies extends Controller
+class MoviesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -54,10 +53,10 @@ class Movies extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\movies  $movies
      * @return \Illuminate\Http\Response
      */
-    public function show(Movies $movies)
+    public function show(movies $movies)
     {
         dd($movies);
     }
@@ -65,10 +64,10 @@ class Movies extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\movies  $movies
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movies $movies)
+    public function edit(movies $movies)
     {
         return view('movies.edit', ['movies'=>$movies]);
     }
@@ -77,10 +76,10 @@ class Movies extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\movies  $movies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movies $movies)
+    public function update(Request $request, movies $movies)
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
@@ -98,10 +97,10 @@ class Movies extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\movies  $movies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movies $movies)
+    public function destroy(movies $movies)
     {
         $movies->delete();
 

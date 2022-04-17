@@ -15,6 +15,6 @@ class WatchedSeeder extends Seeder
      */
     public function run()
     {
-        Watched::factory()->count(15)->create();
+        watched::factory()->count(15)->create();
     }
 }
