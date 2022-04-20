@@ -39,7 +39,7 @@ class MoviesController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'release_year'=> 'required|year',
+            'release_year'=> 'required|date',
             'rating'=>'required'
         ]);
 
@@ -83,12 +83,12 @@ class MoviesController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'release_year'=> 'required|year',
+            'release_year'=> 'required|date',
             'rating'=>'required'
         ]);
 
         $movies->title = $validated['title'];
-        $movies->birthdate = $validated['release_year'];
+        $movies->release_year = $validated['release_year'];
         $movies->rating = $validated['rating'];
 
         $movies->save();
@@ -100,10 +100,11 @@ class MoviesController extends Controller
      * @param  \App\Models\movies  $movies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(movies $movies)
+    public function destroy($movie_id)
     {
-        $movies->delete();
 
-        return redirect(url(route('movies.index')));
+        movies::find($movie_id)->delete();
+
+        return redirect(route('movies.index'));
     }
 }

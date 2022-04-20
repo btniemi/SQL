@@ -37,7 +37,19 @@ class WatchedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated =$request->validate([
+            'peopleId'=>'required',
+            'movieId'=>'required',
+            'stars'=>'required',
+            'comments'=>'required',
+        ]);
+
+        watched::create([
+            'peopleId'=>$validated['peopleId'],
+            'movieId'=>$validated['movieId'],
+            'stars'=>$validated['stars'],
+            'comments'=>$validated['comments'],
+        ]);
     }
 
     /**
@@ -48,7 +60,7 @@ class WatchedController extends Controller
      */
     public function show(watched $watched)
     {
-        //
+        dd($watched);
     }
 
     /**
@@ -59,7 +71,7 @@ class WatchedController extends Controller
      */
     public function edit(watched $watched)
     {
-        //
+        return view('watched.edit',['watched'=>$watched]);
     }
 
     /**
@@ -71,7 +83,20 @@ class WatchedController extends Controller
      */
     public function update(Request $request, watched $watched)
     {
-        //
+        $validated =$request->validate([
+            'peopleId'=>'required',
+            'movieId'=>'required',
+            'stars'=>'required',
+            'comments'=>'required',
+        ]);
+
+        $watched->peopleId = $validated['peopleId'];
+        $watched->movieId = $validated['movieId'];
+        $watched->stars = $validated['stars'];
+        $watched->comments = $validated['comments'];
+
+        $watched->save();
+
     }
 
     /**
@@ -82,6 +107,8 @@ class WatchedController extends Controller
      */
     public function destroy(watched $watched)
     {
-        //
+        $watched->delete();
+
+        return redirect(url(route('watched.index')));
     }
 }

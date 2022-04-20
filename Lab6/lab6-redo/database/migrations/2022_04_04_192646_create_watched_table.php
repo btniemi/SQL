@@ -20,8 +20,8 @@ return new class extends Migration
             $table->text('comments');
             $table->timestamps();
 
-            $table->foreign('peopleId')->references('id')->on('people');
-            $table->foreign("movieID")->references('id')->on('movies');
+            $table->foreign('peopleId')->references('id')->on('people')->cascadeOnDelete();
+            $table->foreign("movieID")->references('id')->on('movies')->cascadeOnDelete();
         });
     }
 
