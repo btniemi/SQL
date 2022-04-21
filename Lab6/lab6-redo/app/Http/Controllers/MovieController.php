@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\movies;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\UpdateMovieRequest;
+use App\Models\Movie;
 
-class MoviesController extends Controller
+class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = \App\Models\movies::all();
-
-        return view('movies.index', ['movies' => $movies]);
+        $Movie = Movie::all();
+        return view('movie.index',['movie'=>$Movie]);
     }
 
     /**
@@ -26,60 +26,62 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('movies.create');
+        return view('movie.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreMovieRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'release_year'=> 'required|date',
+            'release_year'=> 'required',
             'rating'=>'required'
         ]);
 
-        movies::create([
+        Movie::create([
             'title' => $validated['title'],
             'release_year'=> $validated['release_year'],
             'rating'=>$validated['rating']
         ]);
+
+        return redirect(route('movie.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\movies  $movies
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show(movies $movies)
+    public function show(Movie $movie)
     {
-        dd($movies);
+        dd($movie);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\movies  $movies
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(movies $movies)
+    public function edit(Movie $movie)
     {
-        return view('movies.edit', ['movies'=>$movies]);
+        return view('movie.edit', ['movie'=>$movie]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\movies  $movies
+     * @param  \App\Http\Requests\UpdateMovieRequest  $request
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, movies $movies)
+    public function update(UpdateMovieRequest $request, Movie $movie)
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
@@ -87,24 +89,23 @@ class MoviesController extends Controller
             'rating'=>'required'
         ]);
 
-        $movies->title = $validated['title'];
-        $movies->release_year = $validated['release_year'];
-        $movies->rating = $validated['rating'];
+        $movie->title = $validated['title'];
+        $movie->release_year = $validated['release_year'];
+        $movie->rating = $validated['rating'];
 
-        $movies->save();
+        $movie->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\movies  $movies
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy($movie_id)
+    public function destroy(Movie $movie)
     {
+        Movie::find($movie)->delete();
 
-        movies::find($movie_id)->delete();
-
-        return redirect(route('movies.index'));
+        return redirect(route('movie.index'));
     }
 }

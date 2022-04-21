@@ -2,7 +2,7 @@
 
 <p>There are: {{ $movies->count() }} {{ Str::plural('movies', $movies->count()) }}</p>
 
-<a href="{{ route('movies.create') }}">Add a New Movie</a>
+<a href="{{ route('movies.create') }}"> <button type="button">Make New Movie</button></a>
 
 @foreach($movies as $movie)
     <p>
@@ -12,6 +12,7 @@
             @method('delete')
             <button type="submit">Delete Movie</button>
         </form>
+        <a href="{{ route('movies.edit', ['movie'=>$movie]) }}"> <button type="button">Edit Movie</button></a>
     </p>
 @endforeach
 

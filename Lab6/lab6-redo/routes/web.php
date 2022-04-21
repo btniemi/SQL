@@ -24,6 +24,5 @@ Route::get('/data', function(){
     return view('data', ['people'=> $people, 'movies'=>$movies, 'watched'=>$watched]);
 });
 
-Route::resource('/movies', \App\Http\Controllers\MoviesController::class);
-Route::resource('/people', \App\Http\Controllers\PeopleController::class);
-Route::resource('/watched', \App\Http\Controllers\WatchedController::class);
+Route::resource('/movie', \App\Http\Controllers\MoviesController::class);
+
