@@ -46,6 +46,8 @@ class PersonController extends Controller
             'name' => $validated['name'],
             'birthdate' => $validated['birthdate'],
         ]);
+
+        return redirect(route('person.index'));
     }
 
     /**
@@ -88,6 +90,8 @@ class PersonController extends Controller
         $person->birthdate = $validated['birthdate'];
 
         $person->save();
+
+        return redirect(route('person.index'));
     }
 
     /**
@@ -100,6 +104,6 @@ class PersonController extends Controller
     {
         $person->delete();
 
-        return redirect(url(route('person.index')));
+        return redirect(route('person.index'));
     }
 }

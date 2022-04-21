@@ -2,15 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\movies;
-use App\Models\people;
-use Database\Seeders\PeopleSeeder;
+use App\Models\Movie;
+use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\watched>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Watch>
  */
-class WatchedFactory extends Factory
+class WatchFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +19,8 @@ class WatchedFactory extends Factory
     public function definition()
     {
         return [
-            'peopleId'=> People::factory()->create(),
-            'movieId'=> Movies::factory()->create(),
+            'people_id'=> Person::factory()->create(),
+            'movie_id'=> Movie::factory()->create(),
             'stars' => $this->faker->numberBetween(1,5),
             'comments' => $this->faker->sentence(5),
         ];

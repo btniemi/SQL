@@ -10,16 +10,16 @@
 {{--you can do this as table as well try that if you want to make it look nicer look that up--}}
         <p>this is the people data</p>
 {{--        @json($people)--}}
-        @foreach($people as $person)
-            <p>{{ $person -> name }} , {{ $person->birthdate }}</p>
+        @foreach($person as $people)
+            <p>{{ $people -> name }} , {{ $people->birthdate }}</p>
         @endforeach
 
         <br>
 
         <h2>Movies</h2>
         <p>this is the movies data</p>
-        @foreach($movies as $movie)
-            <p>{{$movie -> title}} , {{$movie -> release_year}} , {{$movie -> rating}}</p>
+        @foreach($movie as $mov)
+            <p>{{$mov -> title}} , {{$mov -> release_year}} , {{$mov -> rating}}</p>
         @endforeach
 
         <br>

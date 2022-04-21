@@ -1,8 +1,7 @@
 <h2>Create a new Movie</h2>
 
-<form method="post" action="{{ route('movies.store') }}">
+<form method="post" action="{{ route('movie.store') }}">
     @csrf
-    @method('post')
 
     title: <input name="title" />
     release year: <input name="release_year" />

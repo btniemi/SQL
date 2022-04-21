@@ -26,3 +26,4 @@ Route::get('/data', function(){
 
 Route::resource('/movie',\App\Http\Controllers\MovieController::class);
 Route::resource('/person',\App\Http\Controllers\PersonController::class);
+Route::resource('/watch',\App\Http\Controllers\WatchController::class);

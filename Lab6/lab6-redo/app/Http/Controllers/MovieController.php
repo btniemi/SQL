@@ -16,7 +16,7 @@ class MovieController extends Controller
     public function index()
     {
         $Movie = Movie::all();
-        return view('movie.index',['movie'=>$Movie]);
+        return view('Movie.index',['movie'=>$Movie]);
     }
 
     /**
@@ -85,7 +85,7 @@ class MovieController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'release_year'=> 'required|date',
+            'release_year'=> 'required',
             'rating'=>'required'
         ]);
 
@@ -94,6 +94,8 @@ class MovieController extends Controller
         $movie->rating = $validated['rating'];
 
         $movie->save();
+
+        return redirect(route('movie.index'));
     }
 
     /**
@@ -104,7 +106,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        Movie::find($movie)->delete();
+        $movie->delete();
 
         return redirect(route('movie.index'));
     }

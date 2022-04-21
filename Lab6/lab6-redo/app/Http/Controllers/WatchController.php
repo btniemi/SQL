@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\watched;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreWatchRequest;
+use App\Http\Requests\UpdateWatchRequest;
+use App\Models\Watch;
 
-class WatchedController extends Controller
+class WatchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class WatchedController extends Controller
      */
     public function index()
     {
-        $watched = \App\Models\watched::all();
+        $watch = \App\Models\Watch::all();
 
-        return view('watched.index', ['watched' => $watched]);
+        return view('watch.index', ['watch' => $watch]);
     }
 
     /**
@@ -26,16 +27,16 @@ class WatchedController extends Controller
      */
     public function create()
     {
-        return view('watched.create');
+        return view('watch.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreWatchRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreWatchRequest $request)
     {
         $validated =$request->validate([
             'peopleId'=>'required',
@@ -44,7 +45,7 @@ class WatchedController extends Controller
             'comments'=>'required',
         ]);
 
-        watched::create([
+        Watch::create([
             'peopleId'=>$validated['peopleId'],
             'movieId'=>$validated['movieId'],
             'stars'=>$validated['stars'],
@@ -55,33 +56,33 @@ class WatchedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\watched  $watched
+     * @param  \App\Models\Watch  $watch
      * @return \Illuminate\Http\Response
      */
-    public function show(watched $watched)
+    public function show(Watch $watch)
     {
-        dd($watched);
+        dd($watch);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\watched  $watched
+     * @param  \App\Models\Watch  $watch
      * @return \Illuminate\Http\Response
      */
-    public function edit(watched $watched)
+    public function edit(Watch $watch)
     {
-        return view('watched.edit',['watched'=>$watched]);
+        return view('watch.edit',['watch'=>$watch]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\watched  $watched
+     * @param  \App\Http\Requests\UpdateWatchRequest  $request
+     * @param  \App\Models\Watch  $watch
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, watched $watched)
+    public function update(UpdateWatchRequest $request, Watch $watch)
     {
         $validated =$request->validate([
             'peopleId'=>'required',
@@ -90,24 +91,23 @@ class WatchedController extends Controller
             'comments'=>'required',
         ]);
 
-        $watched->peopleId = $validated['peopleId'];
-        $watched->movieId = $validated['movieId'];
-        $watched->stars = $validated['stars'];
-        $watched->comments = $validated['comments'];
+        $watch->peopleId = $validated['peopleId'];
+        $watch->movieId = $validated['movieId'];
+        $watch->stars = $validated['stars'];
+        $watch->comments = $validated['comments'];
 
-        $watched->save();
-
+        $watch->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\watched  $watched
+     * @param  \App\Models\Watch  $watch
      * @return \Illuminate\Http\Response
      */
-    public function destroy(watched $watched)
+    public function destroy(Watch $watch)
     {
-        $watched->delete();
+        $watch->delete();
 
         return redirect(url(route('watched.index')));
     }

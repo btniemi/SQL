@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Watch;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\watched;
 
-class WatchedSeeder extends Seeder
+class WatchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class WatchedSeeder extends Seeder
      */
     public function run()
     {
-        watched::factory()->count(15)->create();
+        Watch::factory()->count(15)->create();
     }
 }

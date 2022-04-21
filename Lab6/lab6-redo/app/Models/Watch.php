@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class watched extends Model
+class Watch extends Model
 {
     use HasFactory;
 
@@ -21,11 +21,10 @@ class watched extends Model
 //this creates the relationship for the watched to the other tables needed
     public function getPerson()
     {
-        return $this->belongsTo(people::class, 'peopleId', 'id');
+        return $this->belongsTo(Person::class, 'people_id', 'id');
     }
 
     public function getMovie(){
-        return $this->belongsTo(movies::class, 'movieId', 'id');
+        return $this->belongsTo(Movie::class, 'movie_id', 'id');
     }
-
 }
