@@ -18,11 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/data', function(){
-    $people = \App\Models\people::all();
-    $movies = \App\Models\movies::all();
-    $watched = \App\Models\watched::all();
-    return view('data', ['people'=> $people, 'movies'=>$movies, 'watched'=>$watched]);
+    $person = \App\Models\Person::all();
+    $movie = \App\Models\Movie::all();
+    $watched = \App\Models\Watch::all();
+    return view('data', ['person'=> $person, 'movie'=>$movie, 'watched'=>$watched]);
 });
 
-Route::resource('/movie', \App\Http\Controllers\MoviesController::class);
-
+Route::resource('/movie',\App\Http\Controllers\MovieController::class);
+Route::resource('/person',\App\Http\Controllers\PersonController::class);

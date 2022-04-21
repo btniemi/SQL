@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             //PeopleSeeder::class,
             //MoviesSeeder::class,
-            WatchedSeeder::class,
+            WatchSeeder::class,
         ]); //this runs all seeders in one file to departmentalize the stuff in seeders for easy code manipulation
     }
 }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\people;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePersonRequest;
+use App\Http\Requests\UpdatePersonRequest;
+use App\Models\Person;
 
-class PeopleController extends Controller
+class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        $people = \App\Models\people::all();
-
-        return view('people.index', ['people' => $people]);
+        $person = Person::all();
+        return view('person.index', ['person' => $person]);
     }
 
     /**
@@ -26,23 +26,23 @@ class PeopleController extends Controller
      */
     public function create()
     {
-        return view('people.create');
+        return view('person.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePersonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePersonRequest $request)
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
             'birthdate' => 'required|date',
         ]);
 
-        people::create([
+        Person::create([
             'name' => $validated['name'],
             'birthdate' => $validated['birthdate'],
         ]);
@@ -51,55 +51,55 @@ class PeopleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\people  $people
+     * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function show(people $people)
+    public function show(Person $person)
     {
-        dd($people);
+        dd($person);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\people  $people
+     * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function edit(people $people)
+    public function edit(Person $person)
     {
-        return view('people.edit', ['people' => $people]);
+        return view('person.edit', ['person' => $person]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\people  $people
+     * @param  \App\Http\Requests\UpdatePersonRequest  $request
+     * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, people $people)
+    public function update(UpdatePersonRequest $request, Person $person)
     {
         $validated = $request->validate([
             'name'=> 'required|max:255',
             'birthdate'=> 'required|date',
         ]);
 
-        $people->name = $validated['name'];
-        $people->birthdate = $validated['birthdate'];
+        $person->name = $validated['name'];
+        $person->birthdate = $validated['birthdate'];
 
-        $people->save();
+        $person->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\people  $people
+     * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function destroy(people $people)
+    public function destroy(Person $person)
     {
-        $people->delete();
+        $person->delete();
 
-        return redirect(url(route('people.index')));
+        return redirect(url(route('person.index')));
     }
 }
