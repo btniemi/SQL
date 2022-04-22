@@ -1,5 +1,10 @@
 <h2>Movies</h2>
 
+<nav>
+    <a href="{{ route('watch.index') }}">Watch Page</a>
+    <a href="{{ route('person.index') }}">Person Page</a>
+</nav>
+
 <p>There are: {{ $movie->count() }} {{ Str::plural('movies', $movie->count()) }}</p>
 
 <a href="{{ route('movie.create') }}"> <button type="button">Make New Movie</button></a>

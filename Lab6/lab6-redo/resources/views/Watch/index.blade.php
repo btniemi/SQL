@@ -1,5 +1,10 @@
 <h1>Watched</h1>
 
+<nav>
+    <a href="{{ route('movie.index') }}">Movie Page</a>
+    <a href="{{ route('person.index') }}">Person Page</a>
+</nav>
+
 <p>There are: {{ $watch->count() }} {{ Str::plural('watch', $watch->count()) }}</p>
 
 <p>These are the people and which movies they watched</p>
