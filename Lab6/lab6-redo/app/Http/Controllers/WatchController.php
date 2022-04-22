@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreWatchRequest;
 use App\Http\Requests\UpdateWatchRequest;
 use App\Models\Watch;
+use App\Models\Person;
+use App\Models\Movie;
 
 class WatchController extends Controller
 {
@@ -27,7 +29,9 @@ class WatchController extends Controller
      */
     public function create()
     {
-        return view('watch.create');
+        $movies=Movie::all();
+        $people=Person::all();
+        return view('watch.create', compact('people', 'movies'));
     }
 
     /**
@@ -39,18 +43,20 @@ class WatchController extends Controller
     public function store(StoreWatchRequest $request)
     {
         $validated =$request->validate([
-            'peopleId'=>'required',
-            'movieId'=>'required',
+            'people_id'=>'required',
+            'movie_id'=>'required',
             'stars'=>'required',
             'comments'=>'required',
         ]);
 
         Watch::create([
-            'peopleId'=>$validated['peopleId'],
-            'movieId'=>$validated['movieId'],
+            'people_id'=>$validated['people_id'],
+            'movie_id'=>$validated['movie_id'],
             'stars'=>$validated['stars'],
             'comments'=>$validated['comments'],
         ]);
+
+        return redirect(route('watch.index'));
     }
 
     /**
@@ -72,7 +78,9 @@ class WatchController extends Controller
      */
     public function edit(Watch $watch)
     {
-        return view('watch.edit',['watch'=>$watch]);
+        $movies=Movie::all();
+        $people=Person::all();
+        return view('watch.edit',['watch'=>$watch], compact('people', 'movies'));
     }
 
     /**
@@ -85,18 +93,20 @@ class WatchController extends Controller
     public function update(UpdateWatchRequest $request, Watch $watch)
     {
         $validated =$request->validate([
-            'peopleId'=>'required',
-            'movieId'=>'required',
+            'people_id'=>'required',
+            'movie_id'=>'required',
             'stars'=>'required',
             'comments'=>'required',
         ]);
 
-        $watch->peopleId = $validated['peopleId'];
-        $watch->movieId = $validated['movieId'];
+        $watch->people_id = $validated['people_id'];
+        $watch->movie_id = $validated['movie_id'];
         $watch->stars = $validated['stars'];
         $watch->comments = $validated['comments'];
 
         $watch->save();
+
+        return redirect(route('watch.index'));
     }
 
     /**
@@ -109,6 +119,6 @@ class WatchController extends Controller
     {
         $watch->delete();
 
-        return redirect(url(route('watched.index')));
+        return redirect(route('watch.index'));
     }
 }

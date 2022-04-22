@@ -9,14 +9,10 @@ class Watch extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['peopleId', 'movieId',];
+    protected $guarded = ['id'];
 
     protected $table = 'watched';
 
-    protected $fillable = [
-        'stars',
-        'comments',
-    ];
 
 //this creates the relationship for the watched to the other tables needed
     public function getPerson()
